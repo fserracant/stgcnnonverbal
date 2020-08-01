@@ -21,6 +21,7 @@ class SkeletonFeeder(torch.utils.data.Dataset):
     def __init__(self,
                  data_path,
                  label_path,
+                 output_path,
                  random_choose=False,
                  random_move=False,
                  window_size=-1,
@@ -29,6 +30,7 @@ class SkeletonFeeder(torch.utils.data.Dataset):
         self.debug = debug
         self.data_path = data_path
         self.label_path = label_path
+        self.output_path = output_path
         self.random_choose = random_choose
         self.random_move = random_move
         self.window_size = window_size

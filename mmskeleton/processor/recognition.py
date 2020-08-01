@@ -24,6 +24,7 @@ def test(model_cfg,
     assert batch_size is not None, 'Please appoint batch_size or gpu_batch_size.'
 
     dataset = call_obj(**dataset_cfg)
+    print(dir(dataset))
     data_loader = torch.utils.data.DataLoader(dataset=dataset,
                                               batch_size=batch_size,
                                               shuffle=False,
@@ -57,6 +58,11 @@ def test(model_cfg,
     print('Top 1: {:.2f}%'.format(100 * topk_accuracy(results, labels, 1)))
     print('Top 5: {:.2f}%'.format(100 * topk_accuracy(results, labels, 5)))
 
+    if 'output_path' in dir(dataset):
+        import os
+        f = open(os.path.join(dataset.output_path, os.path.basename(dataset.data_path)), 'wb')
+        np.save(f, np.asarray( [np.argsort(a)[-3:] for a in results] ) )
+        f.close()
 
 def train(
         work_dir,
