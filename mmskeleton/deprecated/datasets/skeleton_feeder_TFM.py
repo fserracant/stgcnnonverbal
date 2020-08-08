@@ -36,8 +36,6 @@ class SkeletonFeederTFM(torch.utils.data.Dataset):
         self.random_move = random_move
         self.window_size = window_size
 
-        self.transform = transforms.Compose([transforms.ToTensor()])
-
         self.load_data(mmap)
 
     def load_data(self, mmap):

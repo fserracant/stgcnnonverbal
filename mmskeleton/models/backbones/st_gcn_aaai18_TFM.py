@@ -84,8 +84,7 @@ class ST_GCN_18_TFM(nn.Module):
             self.edge_importance = [1] * len(self.st_gcn_networks)
 
         # fcn for prediction
-        #self.fcn = nn.Conv2d(256, num_class, kernel_size=1)
-        self.lin = nn.Linear(256, num_class)
+        self.fcn = nn.Conv2d(256, num_class, kernel_size=1)
 
     def forward(self, x):
         # data normalization
@@ -106,9 +105,7 @@ class ST_GCN_18_TFM(nn.Module):
         x = x.view(N, M, -1, 1, 1).mean(dim=1)
 
         # prediction
-        #x = self.fcn(x)
-        x = x.view(64, -1)
-        x = self.lin(x)
+        x = self.fcn(x)
         x = x.view(x.size(0), -1)
 
         return x
@@ -132,8 +129,7 @@ class ST_GCN_18_TFM(nn.Module):
         feature = x.view(N, M, c, t, v).permute(0, 2, 3, 4, 1)
 
         # prediction
-        #x = self.fcn(x)
-        x = self.lin(x)
+        x = self.fcn(x)
         output = x.view(N, M, -1, t, v).permute(0, 2, 3, 4, 1)
 
         return output, feature
