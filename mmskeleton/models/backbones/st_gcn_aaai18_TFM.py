@@ -37,6 +37,7 @@ class ST_GCN_18_TFM(nn.Module):
                  in_channels,
                  num_class,
                  graph_cfg,
+                 temporal_kernel=9,
                  edge_importance_weighting=True,
                  data_bn=True,
                  **kwargs):
@@ -51,8 +52,9 @@ class ST_GCN_18_TFM(nn.Module):
 
         # build networks
         spatial_kernel_size = A.size(0)
-        temporal_kernel_size = 9
+        temporal_kernel_size = temporal_kernel
         kernel_size = (temporal_kernel_size, spatial_kernel_size)
+        print("Kernel:", kernel_size)
         self.data_bn = nn.BatchNorm1d(in_channels *
                                       A.size(1)) if data_bn else iden
         kwargs0 = {k: v for k, v in kwargs.items() if k != 'dropout'}

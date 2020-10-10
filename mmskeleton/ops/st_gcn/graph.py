@@ -42,7 +42,18 @@ class Graph():
     def get_edge(self, layout):
         # edge is a list of [child, parent] paris
 
-        if layout == 'openpose':
+        if layout == 'videopose3d':
+            self.num_node = 18
+            self_link = [(i, i) for i in range(self.num_node)]
+            neighbor_link = [(0,1), (1,2), (2,3),
+                             (0,4), (4,5), (5,6),
+                             (0,7), (7,8),
+                             (8,9), (9,10),
+                             (8,11), (11,12), (12,13),
+                             (8,4), (14,15), (15,16)]
+            self.edge = self_link + neighbor_link
+            self.center = 1
+        elif layout == 'openpose':
             self.num_node = 18
             self_link = [(i, i) for i in range(self.num_node)]
             neighbor_link = [(4, 3), (3, 2), (7, 6), (6, 5),
