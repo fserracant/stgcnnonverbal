@@ -2,3 +2,4 @@ mmcv
 torch>=1.1
 torchvision
 lazy_import
+massedit
