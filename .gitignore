@@ -5,6 +5,7 @@ data
 config_v0/*
 backup/*
 .vscode
+*.code-workspace
 model/*
 *.pt
 *.caffemodel
@@ -12,6 +13,7 @@ cache/
 checkpoints/*
 save/*
 configs_private/
+experiments/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
